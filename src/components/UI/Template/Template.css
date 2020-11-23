@@ -1,0 +1,75 @@
+.imagecard{
+    width: 600px;
+    height: 150px;
+    box-shadow: 0 0 5px rgb(39, 37, 37);
+    display: flex;
+    margin: 2%;
+    position: absolute;
+}
+
+.prodcimg{
+    width: 200px;
+    height: 150px;
+}
+
+.titlecard{
+    left: 220px;
+    margin: 2%;
+    width: 300px;
+    height: 30px;
+    position: absolute;
+}
+
+.titl{
+    margin: 3%;
+    text-align: left;
+    font-size: large;
+}
+
+.titl1{
+    margin: 3%;
+    text-align: left;
+    font-size: small;
+    overflow: hidden;
+}
+.titledescription{
+    position: absolute;
+    width: 300px;
+    margin:2%;
+    height: 70px;
+}
+
+.pricecard{
+    position: absolute;
+    width: 300px;
+    margin:2%;
+    height: 20px;
+    top: 120px;
+    text-align: left;
+}
+.titl2{
+    margin-left: 5%;
+    text-align: left;
+    font-size: medium;
+    overflow: hidden;
+    font-weight: bolder;
+}
+
+.pricebutton{
+    width: 100px;
+    height: 30px;
+    margin: 2%;
+    left: 520px;
+    position: absolute;
+}
+
+.addbtn{
+    margin-right: 10%;
+    margin-top: 10%;
+    border-radius: 40%;
+    width: 80px;
+    height: 30px;
+    border-color: blue;
+    color: blue;
+    background-color: white;
+}
