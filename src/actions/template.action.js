@@ -9,7 +9,7 @@ export const getProduct = () => {
 
         /*dispatch({ type: templateConstants.GET_ALL_PRODUCTS_REQUEST });
          */
-        const res = await axios.get('/');
+        const res = await axios.get('/getProduct');
         console.log(res);
 
       if (res.status === 200) {
