@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Layout from '../../components/Layout';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
 import Input from '../../components/UI/Input';
@@ -16,51 +16,13 @@ import * as yup from 'yup';
 
 const Signin = (props) => {
 
-  {/*const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-const [error, setError] = useState('');*/}
+ 
 
 
   const auth = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
-  {/*const userLogin = (e) => {
-
-
-    e.preventDefault();
-
-    const user = {
-      email, password
-    }
-
-    dispatch(login(user));
-  }
-*/}
-  
-  {/* 
-const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: ''
-    },
-   
-    validationSchema: Yup.object({
-
-      email: Yup.string().email('Invalid email address').required('Required'),
-      password: Yup.string()
-        .min(5, 'Minimun 5 chars')
-        .required('Required'),
-
-    }),
-    onSubmit:
-      values => {
-        dispatch(login(values));
-        console.log(values);
-
-      },
-  });
-
-*/}
+ 
   const schema = yup.object({
 
     email: yup.string().email('Invalid email address').required('Email is Required'),

@@ -20,7 +20,7 @@ const Products = (props) => {
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
     const [categoryId, setCategoryId] = useState('');
-    const [productPictures, setProductPictures] = useState([]);
+    const [productPicture, setProductPicture] = useState([]);
     const [show, setShow] = useState(false);
     const [productDetailModal, setProductDetailModal] = useState(false);
     const [productDetails, setProductDetails] = useState(null);
@@ -35,12 +35,13 @@ const Products = (props) => {
         form.append('quantity', quantity);
         form.append('price', price);
         form.append('description', description);
-        form.append('category', category);
+        form.append('category', categoryId);
 
-        for (let pic of productPictures) {
-            form.append('productPicture', pic);
+        for (let pic of productPicture) {
+            form.append("productPicture", pic);
+          }
 
-        }
+
 
         dispatch(addProduct(form));
 
@@ -62,12 +63,12 @@ const Products = (props) => {
     }
 
     const handleProductPictures = (e) => {
-        setProductPictures([
-            ...productPictures,
+        setProductPicture([
+            ...productPicture,
             e.target.files[0]
         ]);
     }
-    console.log(productPictures);
+    console.log(productPicture);
 
 
 
@@ -152,8 +153,8 @@ const Products = (props) => {
                     }
                 </select>
                 {
-                    productPictures.length > 0 ?
-                        productPictures.map((pic, index) => <div key={index}>{pic.name}</div>) : null
+                    productPicture.length > 0 ?
+                        productPicture.map((pic, index) => <div key={index}>{pic.name}</div>) : null
                 }
 
                 <input type="file" name="productPicture" onChange={handleProductPictures} />
@@ -214,7 +215,7 @@ const Products = (props) => {
                     <Col>
                         <label className="key">Product Pictures</label>
                         <div style={{ display: 'flex' }}>
-                            {productDetails.productPictures.map(picture =>
+                            {productDetails.productPicture.map(picture =>
                                 <div className="productImgContainer">
                                     <img src={generatePublicUrl(picture.img)} />
                                 </div>

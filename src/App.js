@@ -7,7 +7,7 @@ import Signup from './containers/Signup';
 import Products from './containers/Products';
 import Orders from './containers/Orders';
 import PrivateRoute from './components/HOC/PrivateRoute';
-import { isUserLoggedIn,getAllCategory, getInitialData } from './actions';
+import { isUserLoggedIn, getInitialData } from './actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Category from './containers/Category';
 import NewPage from './containers/NewPage';

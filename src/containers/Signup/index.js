@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React  from 'react'
 import Layout from '../../components/Layout'
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
 import Input from '../../components/UI/Input';
@@ -13,29 +13,12 @@ import * as yup from 'yup';
 **/
 
 const Signup = (props) => {
-  {/*
-  const[firstName,setFirstName]=useState('');
-  const[lastName,setLastName]=useState('');
-  const[email,setEmail]=useState('');
-  const[password,setPassword]=useState('');
-const[error,setError]=useState('');*/}
-
-
+ 
 
   const auth = useSelector(state => state.auth);
   const user = useSelector(state => state.user)
   const dispatch = useDispatch();
-  {/*
-const userSignup = (e) => {
-  e.preventDefault();
-
-     const user = {
-       firstName,lastName,email,password
-     }
-
-      dispatch(signup(user));
-}
-*/}
+ 
   const schema = yup.object({
     firstName: yup.string()
       .required('First Name is Required'),
@@ -59,10 +42,7 @@ const userSignup = (e) => {
     return <Redirect to={'/'} />
   }
 
-  {/* if(user.loading){
-    return <p>Loading....!</p>
-  }
-*/}
+  
   return (
     <Layout>
       <Container >

@@ -11,7 +11,7 @@ const initState = {
 const buildNewCategories = (parentId, categories, category) => {
     let myCategories = [];
 
-    if (parentId == undefined) {
+    if (parentId === undefined) {
         return [
             ...categories,
             {
@@ -36,7 +36,7 @@ const buildNewCategories = (parentId, categories, category) => {
             children: []
         };
 
-        if (cat._id == parentId) {
+        if (cat._id === parentId) {
             myCategories.push({
                 ...cat,
                 children: cat.children.length > 0 ? [...cat.children, newCategory] : [newCategory]

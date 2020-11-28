@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import Layout from '../../components/Layout';
 import { Container, Row, Col, } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +8,6 @@ import {
     updateCategories,
     deleteCategories as deleteCategoriesAction
 } from '../../actions/';
-import Input from '../../components/UI/Input';
 import Modal from '../../components/UI/Modal';
 import CheckboxTree from 'react-checkbox-tree';
 import 'react-checkbox-tree/lib/react-checkbox-tree.css';
@@ -113,12 +112,12 @@ const Category = (props) => {
         const expandedArray = [];
 
         checked.length > 0 && checked.forEach((categoryId, index) => {
-            const category = categories.find((category, _index) => categoryId == category.value)
+            const category = categories.find((category, _index) => categoryId === category.value)
             category && checkedArray.push(category);
         })
 
         expanded.length > 0 && expanded.forEach((categoryId, index) => {
-            const category = categories.find((category, _index) => categoryId == category.value)
+            const category = categories.find((category, _index) => categoryId === category.value)
             category && expandedArray.push(category);
         })
         setCheckedArray(checkedArray);
@@ -127,11 +126,11 @@ const Category = (props) => {
 
     }
     const handleCategoryInput = (key, value, index, type) => {
-        if (type == "checked") {
-            const updatedCheckedArray = checkedArray.map((item, index) => index == index ? { ...item, [key]: value } : item);
+        if (type === "checked") {
+            const updatedCheckedArray = checkedArray.map((item, _index) => index === _index ? { ...item, [key]: value } : item);
             setCheckedArray(updatedCheckedArray);
-        } else if (type == "expanded") {
-            const updatedExpandedArray = expandedArray.map((item, index) => index == index ? { ...item, [key]: value } : item);
+        } else if (type === "expanded") {
+            const updatedExpandedArray = expandedArray.map((item, _index) => index === _index ? { ...item, [key]: value } : item);
             setExpandedArray(updatedExpandedArray);
         }
     }
