@@ -20,7 +20,7 @@ const Products = (props) => {
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
     const [categoryId, setCategoryId] = useState('');
-    const [productPicture, setProductPicture] = useState([]);
+    const [productPictures, setProductPictures] = useState([]);
     const [show, setShow] = useState(false);
     const [productDetailModal, setProductDetailModal] = useState(false);
     const [productDetails, setProductDetails] = useState(null);
@@ -34,6 +34,12 @@ const Products = (props) => {
 
     const submitProductForm = () => {
         const form = new FormData();
+
+        if (name === "") {
+            alert("Name is required");
+            setShow(false);
+            return;
+        }
         
         form.append('name', name);
         form.append('quantity', quantity);
@@ -41,7 +47,7 @@ const Products = (props) => {
         form.append('description', description);
         form.append('category', categoryId);
 
-        for (let pic of productPicture) {
+        for (let pic of productPictures) {
             form.append('productPicture', pic);
         }
         dispatch(addProduct(form));
@@ -65,8 +71,8 @@ const Products = (props) => {
     }
 
     const handleProductPictures = (e) => {
-        setProductPicture([
-            ...productPicture,
+        setProductPictures([
+            ...productPictures,
             e.target.files[0]
         ]);
     }
@@ -97,8 +103,8 @@ const Products = (props) => {
                                 <td>{product.name}</td>
                                 <td>{product.price}</td>
                                 <td>{product.quantity}</td>
-                                <td>{product.category.name}</td>
-                            </tr>
+{/*                                 <td>{product.category.name}</td>
+ */}                            </tr>
 
                         ))
                         : null}
@@ -157,8 +163,8 @@ const Products = (props) => {
                             </option>))
                     }
                 </select>
-                {productPicture.length > 0
-                    ? productPicture.map((pic, index) => (
+                {productPictures.length > 0
+                    ? productPictures.map((pic, index) => (
                         <div key={index}>{pic.name}</div>
                     ))
                     : null
@@ -210,10 +216,10 @@ const Products = (props) => {
                         <label className="key"> Quantity </label>
                         <p className="value">{productDetails.quantity}</p>
                     </Col>
-                    <Col md="6">
+                    {/* <Col md="6">
                         <label className="key"> Category </label>
                         <p className="value">{productDetails.category.name}</p>
-                    </Col>
+                    </Col> */}
                 </Row>
                 <Row>
                     <Col md="12">
@@ -222,16 +228,16 @@ const Products = (props) => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
+                     <Col>
                         <label className="key">Product Pictures</label>
-                        <div style={{ display: 'flex' }}>
-                            {productDetails.productPicture.map((picture) => (
+                         <div style={{ display: 'flex' }}>
+                            {/* {productDetails.productPictures.map(pictures => (
                                 <div className="productImgContainer">
-                                    <img src={generatePublicUrl(picture.img)} />
+                                    <img src={generatePublicUrl(pictures.img)} />
                                 </div>
-                            ))}
-                        </div>
-                    </Col>
+                            ))} */}
+                        </div> 
+                    </Col> 
                 </Row>
             </Modal>
         );

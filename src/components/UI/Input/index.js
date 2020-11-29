@@ -30,7 +30,7 @@ const Input = (props) => {
             </Form.Group>
             break;
         case 'text':
-
+            break;
         default:
 
             input = <Form.Group>

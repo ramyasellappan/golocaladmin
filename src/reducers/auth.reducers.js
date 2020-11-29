@@ -6,6 +6,7 @@ const initstate = {
         firstName: '',
         lastName: '',
         email: '',
+        picture:'',
     },
     authenticate: false,
     authenticating: false,

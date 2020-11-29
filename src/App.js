@@ -1,4 +1,4 @@
-import React ,{useEffect}from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import Home from './containers/Home';
@@ -17,15 +17,17 @@ function App() {
 
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth)
- 
+
+
+  //componentDidMount or componentDidUpdate
   useEffect(() => {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
-     }
-     if (auth.authenticate){
+    }
+    if (auth.authenticate) {
       dispatch(getInitialData());
 
-     }
+    }
 
   }, [auth.authenticate]);
 
@@ -34,7 +36,7 @@ function App() {
     <div className="App">
       <Switch>
         <PrivateRoute path="/" exact component={Home} />
-        <PrivateRoute path="/page"  component={NewPage} />
+        <PrivateRoute path="/page" component={NewPage} />
         <PrivateRoute path="/category" component={Category} />
         <PrivateRoute path="/products" exact component={Products} />
         <PrivateRoute path="/orders" exact component={Orders} />
