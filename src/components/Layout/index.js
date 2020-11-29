@@ -23,7 +23,6 @@ const Layout = (props) => {
                   <li> <NavLink to={'/category'}>Category</NavLink> </li>
                   <li> <NavLink to={'/products'}>Products</NavLink> </li>
                   <li> <NavLink to={'/orders'}>Orders</NavLink> </li>
-                  <li> <NavLink to={'/template'}>Template</NavLink> </li>
 
                 </ul>
               </Col>

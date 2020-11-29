@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import Layout from '../../components/Layout';
 import { Container, Row, Col, } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -51,10 +51,11 @@ const Category = (props) => {
 
         const form = new FormData();
 
-        /* if(categoryName === ""){
-            alert("Name is required");
+        if (categoryName === "") {
+            alert("Catogory Name is required");
+            setShow(false);
             return;
-        } */
+        }
 
         form.append('name', categoryName);
         form.append('parentId', parentCategoryId);
@@ -85,11 +86,11 @@ const Category = (props) => {
 
         for (let category of categories) {
             options.push({
-                 value: category._id, 
-                 name: category.name, 
-                 parentId: category.parentId,
-                 type:category.type
-                });
+                value: category._id,
+                name: category.name,
+                parentId: category.parentId,
+                type: category.type
+            });
             if (category.children.length > 0) {
                 createCategoryList(category.children, options)
             }
@@ -112,12 +113,12 @@ const Category = (props) => {
         const expandedArray = [];
 
         checked.length > 0 && checked.forEach((categoryId, index) => {
-            const category = categories.find((category, _index) => categoryId === category.value)
+            const category = categories.find((category, _index) => categoryId === category.value);
             category && checkedArray.push(category);
         })
 
         expanded.length > 0 && expanded.forEach((categoryId, index) => {
-            const category = categories.find((category, _index) => categoryId === category.value)
+            const category = categories.find((category, _index) => categoryId === category.value);
             category && expandedArray.push(category);
         })
         setCheckedArray(checkedArray);
@@ -127,10 +128,12 @@ const Category = (props) => {
     }
     const handleCategoryInput = (key, value, index, type) => {
         if (type === "checked") {
-            const updatedCheckedArray = checkedArray.map((item, _index) => index === _index ? { ...item, [key]: value } : item);
+            const updatedCheckedArray = checkedArray.map((item, _index) =>
+                index === _index ? { ...item, [key]: value } : item);
             setCheckedArray(updatedCheckedArray);
         } else if (type === "expanded") {
-            const updatedExpandedArray = expandedArray.map((item, _index) => index === _index ? { ...item, [key]: value } : item);
+            const updatedExpandedArray = expandedArray.map((item, _index) =>
+                index === _index ? { ...item, [key]: value } : item);
             setExpandedArray(updatedExpandedArray);
         }
     }
@@ -152,7 +155,6 @@ const Category = (props) => {
             form.append('type', item.type);
         })
         dispatch(updateCategories(form));
-        setUpdateCategoryModal(false);
     }
 
 
@@ -175,7 +177,7 @@ const Category = (props) => {
         }
         setDeleteCategoryModal(false);
 
-   
+
     }
 
     const renderDeleteCategoryModal = () => {
@@ -255,7 +257,8 @@ const Category = (props) => {
 
             <AddCategoryModal
                 show={show}
-                handleClose={handleClose}
+                handleClose={() => setShow(false)}
+                onSubmit={handleClose}
                 modalTitle={'Add New Category'}
                 categoryName={categoryName}
                 setCategoryName={setCategoryName}
@@ -267,7 +270,8 @@ const Category = (props) => {
 
             <UpdateCategoriesModal
                 show={updateCategoryModal}
-                handleClose={updateCategoriesForm}
+                handleClose={() => setUpdateCategoryModal(false)}
+                onSubmit={updateCategoriesForm}
                 modalTitle={'Update Categories'}
                 size="lg"
                 expandedArray={expandedArray}

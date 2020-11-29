@@ -14,13 +14,15 @@ const UpdateCategoriesModal = (props) => {
         expandedArray,
         checkedArray,
         handleCategoryInput,
-        categoryList
+        categoryList,
+        onSubmit
     } = props;
 
     return (
         < Modal
             show={show}
             handleClose={handleClose}
+            onSubmit={onSubmit}
             modalTitle={modalTitle}
             size={size}
         >
@@ -36,7 +38,6 @@ const UpdateCategoriesModal = (props) => {
                     <Row key={index} >
                         <Col>
                             <Input
-                                label="Category Name"
                                 placeholder={'Category Name'}
                                 value={item.name}
                                 onChange={(e) => handleCategoryInput('name', e.target.value, index, 'expanded')}

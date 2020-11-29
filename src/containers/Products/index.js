@@ -24,13 +24,17 @@ const Products = (props) => {
     const [show, setShow] = useState(false);
     const [productDetailModal, setProductDetailModal] = useState(false);
     const [productDetails, setProductDetails] = useState(null);
-    const category = useSelector(state => state.category);
-    const product = useSelector(state => state.product);
+    const category = useSelector((state) => state.category);
+    const product = useSelector((state) => state.product);
     const dispatch = useDispatch();
 
-
     const handleClose = () => {
+        setShow(false);
+    };
+
+    const submitProductForm = () => {
         const form = new FormData();
+        
         form.append('name', name);
         form.append('quantity', quantity);
         form.append('price', price);
@@ -38,14 +42,12 @@ const Products = (props) => {
         form.append('category', categoryId);
 
         for (let pic of productPicture) {
-            form.append("productPicture", pic);
-          }
-
-
-
+            form.append('productPicture', pic);
+        }
         dispatch(addProduct(form));
-
         setShow(false);
+
+
     }
 
     const handleShow = () => setShow(true);
@@ -68,7 +70,6 @@ const Products = (props) => {
             e.target.files[0]
         ]);
     }
-    console.log(productPicture);
 
 
 
@@ -86,21 +87,21 @@ const Products = (props) => {
                 </thead>
                 <tbody>
 
-                    {
-                        product.products.length > 0 ?
-                            product.products.map(product =>
-                                <tr onClick={() => showProductDetailsModal(product)} key={product._id}>
-                                    <td>1</td>
-                                    <td>{product.name}</td>
-                                    <td>{product.price}</td>
-                                    <td>{product.quantity}</td>
-                                    <td>{product.category.name}</td>
-                                </tr>
+                    {product.products.length > 0
+                        ? product.products.map((product) => (
+                            <tr
+                                onClick={() => showProductDetailsModal(product)}
+                                key={product._id}
+                            >
+                                <td>1</td>
+                                <td>{product.name}</td>
+                                <td>{product.price}</td>
+                                <td>{product.quantity}</td>
+                                <td>{product.category.name}</td>
+                            </tr>
 
-                            ) : null
-
-                    }
-
+                        ))
+                        : null}
                 </tbody>
             </Table>
         );
@@ -112,6 +113,8 @@ const Products = (props) => {
                 show={show}
                 handleClose={handleClose}
                 modalTitle={'Add New Product'}
+                onSubmit={submitProductForm}
+
             >
                 <Input
                     label="Product Name"
@@ -148,16 +151,23 @@ const Products = (props) => {
                 >
                     <option>select category</option>
                     {
-                        createCategoryList(category.categories).map(option =>
-                            <option key={option.value} value={option.value}>{option.name}</option>)
+                        createCategoryList(category.categories).map((option) => (
+                            <option key={option.value} value={option.value}>
+                                {option.name}
+                            </option>))
                     }
                 </select>
-                {
-                    productPicture.length > 0 ?
-                        productPicture.map((pic, index) => <div key={index}>{pic.name}</div>) : null
+                {productPicture.length > 0
+                    ? productPicture.map((pic, index) => (
+                        <div key={index}>{pic.name}</div>
+                    ))
+                    : null
                 }
 
-                <input type="file" name="productPicture" onChange={handleProductPictures} />
+                <input type="file"
+                    name="productPicture"
+                    onChange={handleProductPictures}
+                />
             </Modal>
         );
     }
@@ -215,18 +225,14 @@ const Products = (props) => {
                     <Col>
                         <label className="key">Product Pictures</label>
                         <div style={{ display: 'flex' }}>
-                            {productDetails.productPicture.map(picture =>
+                            {productDetails.productPicture.map((picture) => (
                                 <div className="productImgContainer">
                                     <img src={generatePublicUrl(picture.img)} />
                                 </div>
-                            )}
+                            ))}
                         </div>
-
-
-
                     </Col>
                 </Row>
-
             </Modal>
         );
     }
@@ -252,8 +258,8 @@ const Products = (props) => {
             {renderAddProductModal()}
             {renderProductDetailsModal()}
         </Layout>
-    )
+    );
 
-}
+};
 
 export default Products

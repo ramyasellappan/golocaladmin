@@ -11,7 +11,6 @@ import { isUserLoggedIn, getInitialData } from './actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Category from './containers/Category';
 import NewPage from './containers/NewPage';
-import TemplateTesting from './containers/TemplateTesting/TemplateTesting';
 
 
 function App() {
@@ -23,9 +22,12 @@ function App() {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
      }
-     dispatch(getInitialData());
+     if (auth.authenticate){
+      dispatch(getInitialData());
 
-  }, []);
+     }
+
+  }, [auth.authenticate]);
 
 
   return (
@@ -36,7 +38,6 @@ function App() {
         <PrivateRoute path="/category" component={Category} />
         <PrivateRoute path="/products" exact component={Products} />
         <PrivateRoute path="/orders" exact component={Orders} />
-        <PrivateRoute path="/Template" exact component={TemplateTesting} />
 
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />

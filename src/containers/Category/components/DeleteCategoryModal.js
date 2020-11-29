@@ -1,7 +1,5 @@
 import React from 'react';
-import {Row, Col, } from 'react-bootstrap';
 import Modal from '../../../components/UI/Modal';
-import Input from '../../../components/UI/Input';
 
 
 const DeleteCategoryModal = (props) => {
