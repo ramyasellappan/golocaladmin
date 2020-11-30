@@ -37,7 +37,7 @@ const Signin = (props) => {
   return (
     <Layout>
       <Container>
-        <Row style={{ marginTop: '50px' }}>
+        <Row style={{ marginTop: '80px' }}>
           <Col md={{ span: 6, offset: 3 }}>
             <Formik
           
