@@ -231,11 +231,11 @@ const Products = (props) => {
                      <Col>
                         <label className="key">Product Pictures</label>
                          <div style={{ display: 'flex' }}>
-                            {/* {productDetails.productPictures.map(pictures => (
+                             {productDetails.productPictures.map(pictures => (
                                 <div className="productImgContainer">
                                     <img src={generatePublicUrl(pictures.img)} />
                                 </div>
-                            ))} */}
+                            ))} 
                         </div> 
                     </Col> 
                 </Row>
