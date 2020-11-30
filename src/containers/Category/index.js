@@ -113,12 +113,14 @@ const Category = (props) => {
         const expandedArray = [];
 
         checked.length > 0 && checked.forEach((categoryId, index) => {
-            const category = categories.find((category, _index) => categoryId === category.value);
+            const category = categories.find((category, _index) =>
+             categoryId === category.value);
             category && checkedArray.push(category);
         })
 
         expanded.length > 0 && expanded.forEach((categoryId, index) => {
-            const category = categories.find((category, _index) => categoryId === category.value);
+            const category = categories.find((category, _index) => 
+            categoryId === category.value);
             category && expandedArray.push(category);
         })
         setCheckedArray(checkedArray);
@@ -147,13 +149,13 @@ const Category = (props) => {
             form.append('name', item.name);
             form.append('parentId', item.parentId ? item.parentId : "");
             form.append('type', item.type);
-        })
+        });
         checkedArray.forEach((item, index) => {
             form.append('_id', item.value);
             form.append('name', item.name);
             form.append('parentId', item.parentId ? item.parentId : "");
             form.append('type', item.type);
-        })
+        });
         dispatch(updateCategories(form));
     }
 
@@ -163,8 +165,10 @@ const Category = (props) => {
         setDeleteCategoryModal(true);
     }
     const deleteCategories = () => {
-        const checkedIdsArray = checkedArray.map((item, index) => ({ _id: item.value }));
-        const expandedIdsArray = expandedArray.map((item, index) => ({ _id: item.value }));
+        const checkedIdsArray = checkedArray.map((item, index) => 
+        ({ _id: item.value }));
+        const expandedIdsArray = expandedArray.map((item, index) => 
+        ({ _id: item.value }));
         const idsArray = expandedIdsArray.concat(checkedIdsArray);
         if (checkedIdsArray.length > 0) {
             dispatch(deleteCategoriesAction(checkedIdsArray))

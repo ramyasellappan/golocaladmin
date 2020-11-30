@@ -7,7 +7,7 @@ import { addProduct } from '../../actions';
 import Modal from '../../components/UI/Modal';
 import { generatePublicUrl } from '../../urlConfig';
 import './style.css';
-
+import {IoIosAdd} from 'react-icons/io'
 /**
 * @author
 * @function Products
@@ -251,7 +251,10 @@ const Products = (props) => {
                     <Col md={12}>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <h3>Products</h3>
-                            <button onClick={handleShow}>Add</button>
+                            <div className="actionBtnContainer">
+                                <span>Actions:</span>
+                                <button onClick={handleShow}><IoIosAdd /> <span>Add</span></button>
+                                 </div>
                         </div>
                     </Col>
                 </Row>
