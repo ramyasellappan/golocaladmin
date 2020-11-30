@@ -94,12 +94,12 @@ const Products = (props) => {
                 <tbody>
 
                     {product.products.length > 0
-                        ? product.products.map((product) => (
+                        ? product.products.map((product,index) => (
                             <tr
                                 onClick={() => showProductDetailsModal(product)}
                                 key={product._id}
                             >
-                                <td>1</td>
+                                <td>{index+1}</td>
                                 <td>{product.name}</td>
                                 <td>{product.price}</td>
                                 <td>{product.quantity}</td>
@@ -228,7 +228,7 @@ const Products = (props) => {
                     </Col>
                 </Row>
                 <Row>
-                     <Col>
+                     {/* <Col>
                         <label className="key">Product Pictures</label>
                          <div style={{ display: 'flex' }}>
                              {productDetails.productPictures.map(pictures => (
@@ -237,7 +237,7 @@ const Products = (props) => {
                                 </div>
                             ))} 
                         </div> 
-                    </Col> 
+                    </Col>  */}
                 </Row>
             </Modal>
         );
